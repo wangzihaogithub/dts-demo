@@ -58,6 +58,12 @@ esMapping:
     session:
       type: array
       split: '[、]'
+    corp$aliasNames:
+      type: array
+      split: ','
+    corp$historyNames:
+      type: array
+      split: ','
     regionList:
       type: array-sql
       sql: "SELECT
@@ -87,3 +93,17 @@ esMapping:
           FROM job_specialty specialty "
       onParentChangeWhereSql: 'WHERE specialty.job_id = #{id} '
       onChildChangeWhereSql: 'WHERE specialty.job_id = #{job_id} '
+    corp:
+      type: object-sql
+      sql: "SELECT
+              corp.id ,
+              corp.`name`,
+              GROUP_CONCAT(if(corpName.type = 2, corpName.`name`, null)) as aliasNames,
+              GROUP_CONCAT(if(corpName.type = 3, corpName.`name`, null)) as historyNames,
+              corp.group_name as groupCompany
+            FROM corp corp
+            LEFT JOIN corp_name corpName on corpName.corp_id = corp.id 
+      "
+      onParentChangeWhereSql: 'WHERE corp.id = #{corp_id} '
+      onChildChangeWhereSql: 'WHERE corp.id = #{corp_id} '
+
