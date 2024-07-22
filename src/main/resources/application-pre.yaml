@@ -1,0 +1,42 @@
+canal.conf:
+  srcDataSources:
+    defaultDS:
+      url: 'jdbc:mysql://xxxxxx.mysql.rds.aliyuncs.com:3306/my-db?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&rewriteBatchedStatements=true&zeroDateTimeBehavior=CONVERT_TO_NULL'
+      username: 'xxxx'
+      password: 'xxxx'
+  canalAdapters:
+    - destination: 'demobinlog'
+      connector: com.github.dts.canal.MysqlBinlogCanalConnector
+      topics:
+        #        - 'my-db\\.job.*'
+        - 'my-db.job'
+        - 'my-db.job_region'
+        - 'my-db.job_specialty'
+        - 'my-db.corp'
+        - 'my-db.corp_name'
+        - 'my-db.corp_region'
+        - 'my-db.region'
+        - 'my-db.corp_relation_tag'
+        - 'my-db.corp_tag'
+        - 'my-db.corp_category'
+        - 'my-db.notice'
+        - 'my-db.corp_recruit_url'
+      properties: {
+        dataSource: 'defaultDS',
+        #        maxDumpThread: 1,
+        #        enableGTID: true
+      }
+      groups:
+        - outerAdapters:
+            - name: 'adapterES7'
+              es7x:
+                address: 'es-cn-xxxxxx.elasticsearch.aliyuncs.com:9200'
+                username: 'xxxxx'
+                password: 'xxxxx'
+
+#  redis非强依赖，如果需要binlog-偏移量持久化的话
+spring:
+  redis:
+    host: 'r-xxxxx.redis.rds.aliyuncs.com'
+    password: 'xxxxx'
+    database: 3
