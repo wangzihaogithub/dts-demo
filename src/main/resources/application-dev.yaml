@@ -1,6 +1,7 @@
 canal.conf:
   srcDataSources:
     defaultDS:
+      # 如果只需要debug调试，只配置上数据库，监听上自己的库和表就可以启动应用了
       url: 'jdbc:mysql://xxxxxx.mysql.rds.aliyuncs.com:3306/my-db?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&rewriteBatchedStatements=true&zeroDateTimeBehavior=CONVERT_TO_NULL'
       username: 'xxxx'
       password: 'xxxx'
@@ -30,10 +31,12 @@ canal.conf:
         - outerAdapters:
             - name: 'adapterES7'
               es7x:
+                # 如果只需要debug调试，这里可以不用改
                 address: 'es-cn-xxxxxx.elasticsearch.aliyuncs.com:9200'
                 username: 'xxxxx'
                 password: 'xxxxx'
 
+# 如果只需要debug调试，这里可以不用改
 #  redis非强依赖，如果需要binlog-偏移量持久化的话
 spring:
   redis:
