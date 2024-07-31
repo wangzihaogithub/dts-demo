@@ -19,22 +19,5 @@ import java.util.List;
 @RestController
 @RequestMapping("/es7x/job")
 public class Es7xJobController extends AbstractEs7xETLIntController {
-    public static final String J_TABLE_NAME = "job";
-    public static final String J_ID_COL_NAME = "id";
-
-    @Override
-    protected Integer selectMaxId(JdbcTemplate jdbcTemplate) {
-        return selectMaxId(jdbcTemplate, J_ID_COL_NAME, J_TABLE_NAME);
-    }
-
-    @Override
-    protected ES7xAdapter getES7xAdapter() {
-        return getES7xAdapter("adapterES7");
-    }
-
-    @Override
-    protected List<Dml> convertDmlList(JdbcTemplate jdbcTemplate, String catalog, Integer minId, int limit) {
-        return convertDmlList(jdbcTemplate, catalog, minId, limit, J_TABLE_NAME, J_ID_COL_NAME);
-    }
 
 }

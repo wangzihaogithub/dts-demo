@@ -24,16 +24,5 @@ import java.util.List;
 @RestController
 @RequestMapping("/es7x/corp")
 public class Es7xCorpController extends AbstractEs7xETLStringController {
-    public static final String J_TABLE_NAME = "corp";
-    public static final String J_ID_COL_NAME = "id";
 
-    @Override
-    protected ES7xAdapter getES7xAdapter() {
-        return getES7xAdapter("adapterES7");
-    }
-
-    @Override
-    protected List<Dml> convertDmlList(JdbcTemplate jdbcTemplate, String catalog, String minId, int limit) {
-        return convertDmlList(jdbcTemplate, catalog, minId, limit, J_TABLE_NAME, J_ID_COL_NAME);
-    }
 }

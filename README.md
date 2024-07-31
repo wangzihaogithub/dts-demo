@@ -28,7 +28,7 @@ https://github.com/wangzihaogithub/dts
 <dependency>
   <groupId>com.github.wangzihaogithub</groupId>
   <artifactId>dts</artifactId>
-  <version>1.1.4</version>
+  <version>1.1.5</version>
 </dependency>
 ```
     
