@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: 'tomcat-demo'
+  profiles:
+    active: dev
+server:
+  port: 8081

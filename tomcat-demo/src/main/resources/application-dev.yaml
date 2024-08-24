@@ -1,0 +1,9 @@
+server:
+  dts:
+    sdk:
+      cluster:
+        discovery: redis
+spring:
+  redis:
+    host: 'r-xxxxx.redis.rds.aliyuncs.com'
+    password: 'xxxxx'

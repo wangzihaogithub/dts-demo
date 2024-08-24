@@ -42,4 +42,3 @@ spring:
   redis:
     host: 'r-xxxxx.redis.rds.aliyuncs.com'
     password: 'xxxxx'
-    database: 4
